@@ -33,9 +33,9 @@ class HomeFragment : Fragment() {
                         findNavController().navigate(R.id.action_home_to_camera)
                 }
 
-                _fragmentHomeBinding!!.lightPatternButton.setOnClickListener {
-                        Log.d(TAG, "HomeFragment: lightPatternButton clicked")
-                        findNavController().navigate(R.id.action_home_to_lightPattern)
-                }
+//                _fragmentHomeBinding!!.lightPatternButton.setOnClickListener {
+//                        Log.d(TAG, "HomeFragment: lightPatternButton clicked")
+//                        findNavController().navigate(R.id.action_home_to_lightPattern)
+//                }
         }
 }

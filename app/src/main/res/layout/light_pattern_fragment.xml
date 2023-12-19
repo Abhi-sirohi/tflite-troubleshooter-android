@@ -12,12 +12,12 @@
         app:scaleType="fillStart">
     </androidx.camera.view.PreviewView>
 
-    <org.tensorflow.lite.examples.objectdetection.OverlayView
-        android:id="@+id/overlay"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_anchor="@+id/view_finder"
-        app:layout_anchorGravity="center" />
+<!--    <org.tensorflow.lite.examples.objectdetection.OverlayView-->
+<!--        android:id="@+id/overlay"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        app:layout_anchor="@+id/view_finder"-->
+<!--        app:layout_anchorGravity="center" />-->
 
     <TextView
         android:id="@+id/stepTextView"

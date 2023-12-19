@@ -1,4 +1,4 @@
-//package com.supportgenie.tflitetroubleshooter.fragments
+package com.supportgenie.tflitetroubleshooter.fragments
 //
 //import android.annotation.SuppressLint
 //import android.content.res.Configuration

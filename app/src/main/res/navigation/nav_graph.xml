@@ -15,10 +15,6 @@
             android:id="@+id/action_home_to_camera"
             app:destination="@id/permissions_fragment" />
 
-        <action
-            android:id="@+id/action_home_to_lightPattern"
-            app:destination="@+id/light_pattern_fragment" />
-
     </fragment>
 
     <fragment
@@ -48,15 +44,4 @@
 
     </fragment>
 
-    <fragment
-        android:id="@+id/light_pattern_fragment"
-        android:name="com.supportgenie.tflitetroubleshooter.fragments.LightPatternFragment"
-        android:label="LightPatternFragment" >
-
-        <action
-            android:id="@+id/action_camera_to_permissions"
-            app:destination="@id/permissions_fragment"
-            app:popUpTo="@id/camera_fragment"
-            app:popUpToInclusive="true"/>
-    </fragment>
 </navigation>
