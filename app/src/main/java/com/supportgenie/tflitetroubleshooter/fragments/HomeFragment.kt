@@ -27,15 +27,17 @@ class HomeFragment : Fragment() {
 
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
                 super.onViewCreated(view, savedInstanceState)
-
-                _fragmentHomeBinding!!.buttonToCamera.setOnClickListener {
+                val bundle = Bundle()
+                _fragmentHomeBinding!!.setUpGuideButton.setOnClickListener {
                         Log.d(TAG, "HomeFragment: buttonToCamera clicked")
-                        findNavController().navigate(R.id.action_home_to_camera)
+                        bundle.putInt("user_choice_key", 1)
+                        findNavController().navigate(R.id.action_home_to_camera,bundle)
                 }
 
-//                _fragmentHomeBinding!!.lightPatternButton.setOnClickListener {
-//                        Log.d(TAG, "HomeFragment: lightPatternButton clicked")
-//                        findNavController().navigate(R.id.action_home_to_lightPattern)
-//                }
+                _fragmentHomeBinding!!.troubleshooterButton.setOnClickListener {
+                        Log.d(TAG, "HomeFragment: troubleshooterButton clicked")
+                        bundle.putInt("user_choice_key", 2)
+                        findNavController().navigate(R.id.action_home_to_camera,bundle)
+                }
         }
 }

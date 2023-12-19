@@ -27,6 +27,11 @@
             app:destination="@id/camera_fragment"
             app:popUpTo="@id/permissions_fragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_permissions_to_troubleshooter"
+            app:destination="@id/troubleshooterFragment"
+            app:popUpTo="@id/permissions_fragment"
+            app:popUpToInclusive="true"/>
 
     </fragment>
 
@@ -43,5 +48,14 @@
             app:popUpToInclusive="true"/>
 
     </fragment>
+    <fragment
+        android:id="@+id/troubleshooterFragment"
+        android:name="com.supportgenie.tflitetroubleshooter.fragments.TroubleshooterFragment"
+        android:label="TroubleshooterFragment" >
+        <action
+            android:id="@+id/action_troubleshooter_to_permissions_fragment"
+            app:destination="@id/permissions_fragment" />
+    </fragment>
+
 
 </navigation>

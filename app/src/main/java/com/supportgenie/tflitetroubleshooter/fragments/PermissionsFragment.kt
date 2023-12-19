@@ -39,7 +39,11 @@ class PermissionsFragment : Fragment() {
                 requireContext(),
                 Manifest.permission.CAMERA
             ) == PackageManager.PERMISSION_GRANTED -> {
-                navigateToCamera()
+                val userChoice = arguments?.getInt("user_choice_key")
+                if (userChoice == 1)
+                    navigateToCamera()
+                else if (userChoice ==2)
+                    navigateToTroubleshooter()
             }
             else -> {
                 requestPermissionLauncher.launch(
@@ -52,6 +56,13 @@ class PermissionsFragment : Fragment() {
         lifecycleScope.launchWhenStarted {
             Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
                 PermissionsFragmentDirections.actionPermissionsToCamera())
+        }
+    }
+
+    private fun navigateToTroubleshooter() {
+        lifecycleScope.launchWhenStarted {
+            Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
+                PermissionsFragmentDirections.actionPermissionsToTroubleshooter())
         }
     }
 

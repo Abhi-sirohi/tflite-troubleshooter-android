@@ -22,6 +22,7 @@
             app:defaultNavHost="true"
             app:navGraph="@navigation/nav_graph"
             android:layout_marginTop="?android:attr/actionBarSize"
+            android:paddingTop="10dp"
             tools:context=".MainActivity"/>
 
         <androidx.appcompat.widget.Toolbar
