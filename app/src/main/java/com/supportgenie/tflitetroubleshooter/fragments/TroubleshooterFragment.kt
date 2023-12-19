@@ -8,8 +8,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.Toast
 import androidx.camera.core.AspectRatio
 import androidx.camera.core.Camera
 import androidx.camera.core.CameraSelector
@@ -21,21 +19,20 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import com.supportgenie.tflitetroubleshooter.R
 import com.supportgenie.tflitetroubleshooter.databinding.FragmentCameraBinding
 
-import java.util.ArrayList
-
 class TroubleshooterFragment : Fragment(){
 
     private val TAG = "ObjectDetection"
 
-    private var _fragmentCameraBinding: FragmentCameraBinding? = null
+    private var _fragmentTroubleshooterBinding: FragmentCameraBinding? = null
 
-    private val fragmentCameraBinding
-        get() = _fragmentCameraBinding!!
+    private val fragmentTroubleshooterBinding
+        get() = _fragmentTroubleshooterBinding!!
 
     private lateinit var bitmapBuffer: Bitmap
     private var preview: Preview? = null
@@ -59,7 +56,7 @@ class TroubleshooterFragment : Fragment(){
     }
 
     override fun onDestroyView() {
-        _fragmentCameraBinding = null
+        _fragmentTroubleshooterBinding = null
         super.onDestroyView()
 
         // Shut down our background executor
@@ -71,20 +68,24 @@ class TroubleshooterFragment : Fragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _fragmentCameraBinding = FragmentCameraBinding.inflate(inflater, container, false)
+        _fragmentTroubleshooterBinding = FragmentCameraBinding.inflate(inflater, container, false)
 
-        return fragmentCameraBinding.root
+        return fragmentTroubleshooterBinding.root
     }
 
     @SuppressLint("MissingPermission")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        _fragmentTroubleshooterBinding!!.exitButton.setOnClickListener {
+            Log.d(TAG, "TroubleshooterFragment: Exit button clicked")
+            findNavController().popBackStack()
+        }
         // Initialize our background executor
         cameraExecutor = Executors.newSingleThreadExecutor()
 
         // Wait for the views to be properly laid out
-        fragmentCameraBinding.viewFinder.post {
+        fragmentTroubleshooterBinding.viewFinder.post {
             // Set up the camera and its use cases
             setUpCamera()
         }
@@ -123,14 +124,14 @@ class TroubleshooterFragment : Fragment(){
         preview =
             Preview.Builder()
                 .setTargetAspectRatio(AspectRatio.RATIO_4_3)
-                .setTargetRotation(fragmentCameraBinding.viewFinder.display.rotation)
+                .setTargetRotation(fragmentTroubleshooterBinding.viewFinder.display.rotation)
                 .build()
 
         // ImageAnalysis. Using RGBA 8888 to match how our models work
         imageAnalyzer =
             ImageAnalysis.Builder()
                 .setTargetAspectRatio(AspectRatio.RATIO_4_3)
-                .setTargetRotation(fragmentCameraBinding.viewFinder.display.rotation)
+                .setTargetRotation(fragmentTroubleshooterBinding.viewFinder.display.rotation)
                 .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                 .setOutputImageFormat(OUTPUT_IMAGE_FORMAT_RGBA_8888)
                 .build()
@@ -160,7 +161,7 @@ class TroubleshooterFragment : Fragment(){
             camera = cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageAnalyzer)
 
             // Attach the viewfinder's surface provider to preview use case
-            preview?.setSurfaceProvider(fragmentCameraBinding.viewFinder.surfaceProvider)
+            preview?.setSurfaceProvider(fragmentTroubleshooterBinding.viewFinder.surfaceProvider)
         } catch (exc: Exception) {
             Log.e(TAG, "Use case binding failed", exc)
         }
@@ -177,7 +178,7 @@ class TroubleshooterFragment : Fragment(){
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-        imageAnalyzer?.targetRotation = fragmentCameraBinding.viewFinder.display.rotation
+        imageAnalyzer?.targetRotation = fragmentTroubleshooterBinding.viewFinder.display.rotation
     }
 
 

@@ -21,6 +21,7 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import com.supportgenie.tflitetroubleshooter.R
@@ -79,7 +80,10 @@ class CameraFragment : Fragment(){
     @SuppressLint("MissingPermission")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        _fragmentCameraBinding!!.exitButton.setOnClickListener {
+            Log.d(TAG, "CameraFragment: Exit button clicked")
+            findNavController().popBackStack()
+        }
         // Initialize our background executor
         cameraExecutor = Executors.newSingleThreadExecutor()
 
