@@ -1,0 +1,26 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/button_to_camera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go to Camera" />
+
+    <Button
+        android:id="@+id/light_pattern_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Light Pattern"
+        android:translationY="50dp" />
+
+    <Button
+        android:id="@+id/troubleshooter_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Troubleshooter"
+        android:translationY="100dp" />
+
+</FrameLayout>

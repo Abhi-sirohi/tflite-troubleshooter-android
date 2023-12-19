@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/camera_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.camera.view.PreviewView
+        android:id="@+id/view_finder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:scaleType="fillStart">
+    </androidx.camera.view.PreviewView>
+
+    <org.tensorflow.lite.examples.objectdetection.OverlayView
+        android:id="@+id/overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_anchor="@+id/view_finder"
+        app:layout_anchorGravity="center" />
+
+    <TextView
+        android:id="@+id/stepTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="100dp"
+        android:background="@android:color/background_dark"
+        android:clickable="false"
+        android:textSize="22sp"
+        android:textColor="@android:color/background_light"
+        />
+
+    <ImageView
+        android:id="@+id/viewfinderOrange"
+        android:layout_width="185dp"
+        android:layout_height="224dp"
+        android:scaleType="fitCenter"
+        android:background="@android:color/black"/>
+
+    <ImageView
+        android:id="@+id/viewfinderGreen"
+        android:layout_width="185dp"
+        android:layout_height="224dp"
+        android:translationX="200dp"
+        android:scaleType="fitCenter"
+        android:background="@android:color/black"/>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
